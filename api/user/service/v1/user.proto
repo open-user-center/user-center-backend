@@ -9,6 +9,7 @@ import "validate/validate.proto";
 option go_package = "api/user/service/v1;v1";
 
 service UserService {
+  //用户注册
   rpc UserRegister (UserRegisterReq) returns (UserRegisterReply){
     option (google.api.http) = {
       post: "api/user/register",
@@ -16,6 +17,7 @@ service UserService {
     };
   }
 
+  //用户登录
   rpc UserLogin (UserLoginReq) returns (UserLoginReply){
     option (google.api.http) = {
       post: "api/user/login",
@@ -23,6 +25,7 @@ service UserService {
     };
   }
 
+  //用户搜索
   rpc SearchUsers (SearchUsersReq) returns (SearchUsersReply){
     option (google.api.http) = {
       post: "api/user/search",
@@ -30,6 +33,7 @@ service UserService {
     };
   }
 
+  //用户删除
   rpc DeleteUser (DeleteUserReq) returns (google.protobuf.Empty){
     option (google.api.http) = {
       post: "api/user/delete",
@@ -37,12 +41,14 @@ service UserService {
     };
   }
 
+  //获取当前登录用户信息
   rpc GetCurrentUser (google.protobuf.Empty) returns (GetCurrentReply){
     option (google.api.http) = {
       get: "api/user/current",
     };
   }
 
+  //用户退出
   rpc UserLogout(google.protobuf.Empty)returns (google.protobuf.Empty){
     option (google.api.http) = {
       post: "api/user/logout",
