@@ -1,0 +1,104 @@
+syntax = "proto3";
+
+package user.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "validate/validate.proto";
+
+option go_package = "api/user/service/v1;v1";
+
+service UserService {
+  rpc UserRegister (UserRegisterReq) returns (UserRegisterReply){
+    option (google.api.http) = {
+      post: "api/user/register",
+      body: "*"
+    };
+  }
+
+  rpc UserLogin (UserLoginReq) returns (UserLoginReply){
+    option (google.api.http) = {
+      post: "api/user/login",
+      body: "*"
+    };
+  }
+
+  rpc SearchUsers (SearchUsersReq) returns (SearchUsersReply){
+    option (google.api.http) = {
+      post: "api/user/search",
+      body: "*"
+    };
+  }
+
+  rpc DeleteUser (DeleteUserReq) returns (google.protobuf.Empty){
+    option (google.api.http) = {
+      post: "api/user/delete",
+      body: "*"
+    };
+  }
+
+  rpc GetCurrentUser (google.protobuf.Empty) returns (GetCurrentReply){
+    option (google.api.http) = {
+      get: "api/user/current",
+    };
+  }
+
+  rpc UserLogout(google.protobuf.Empty)returns (google.protobuf.Empty){
+    option (google.api.http) = {
+      post: "api/user/logout",
+      body: "*"
+    };
+  }
+
+}
+
+message UserRegisterReq{
+  string userAccount = 1;
+  string userPassword = 2;
+  string checkPassword = 3;
+}
+
+message UserRegisterReply{
+  User data = 1;
+}
+
+
+message UserLoginReq{
+  string userAccount = 1;
+  string userPassword = 2;
+}
+
+message UserLoginReply{
+  User data = 1;
+}
+
+message SearchUsersReq {
+  string userName = 1;
+}
+
+message SearchUsersReply{
+  repeated User data = 1;
+}
+
+message DeleteUserReq{
+  int32 id = 1;
+}
+
+
+message GetCurrentReply{
+  User data = 1;
+}
+
+message User{
+  int32 id = 1;
+  string userName = 2;
+  string userAccount = 3;
+  string avatarUrl = 4;
+  string phone = 5;
+  string email = 6;
+  int32 userStatus = 7;
+  int32 gender = 8;
+  bool empty = 9;
+  int32 userRole = 10;
+  string createTime = 11;
+}

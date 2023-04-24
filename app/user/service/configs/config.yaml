@@ -1,0 +1,20 @@
+server:
+  http:
+    addr: 0.0.0.0:8080
+    timeout: 1s
+  grpc:
+    addr: 0.0.0.0:9090
+    timeout: 1s
+data:
+  database:
+    driver: mysql
+    source: root:123456@tcp(127.0.0.1:3306)/user_center?charset=utf8mb4&parseTime=True&loc=Local
+  redis:
+    addr: 127.0.0.1:6379
+    read_timeout: 0.2s
+    write_timeout: 0.2s
+constant:
+  userLoginState: userLoginState
+  sessionTimeout: 86400
+  defaultRole: 0
+  adminRole: 1
