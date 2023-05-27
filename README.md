@@ -10,7 +10,7 @@ docker run --name user-center-redis -p 6379:6379 -itd redis:6.0
 ### 安装mysql
 ```
 docker pull mysql:5.7
-docker run --name user-center-mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
+docker run --name user-center-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
 ```
 ### 运行以下sql脚本注入数据
 ```
